@@ -38,7 +38,7 @@ final class LocalLLM: ObservableObject {
                 from: #hubDownloader(),
                 using: #huggingFaceTokenizerLoader(),
                 configuration: Self.configuration,
-                progress: .download { [weak self] p in
+                progressHandler: { [weak self] p in
                     let f = p.fractionCompleted
                     Task { @MainActor in self?.progress = f }
                 })
